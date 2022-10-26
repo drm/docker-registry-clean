@@ -17,14 +17,17 @@ set -euo pipefail
 ## Configure maximum number of versions per repo
 MAX_PER_REPO="10"
 
-# Protect certain versions
+## Protect certain versions
 declare -A PROTECT
 
-PROTECT["app"]="v3\.17 "
-PROTECT["api-server"]="v3\.17 "
+## For example:
+# PROTECT["app"]="v1\.23 "
+# PROTECT["mysql"]="v5\.27 "
 
+## Make this point to the correct 'garbage-collect' command (i.e., change docker image name)
 GARBAGE_COLLECT="sudo docker exec root_registry_1 bin/registry garbage-collect /etc/docker/registry/config.yml"
 
+## Directory where the repositories reside
 root="/docker/docker-registry/docker/registry/v2/repositories"
 
 do-list() {
